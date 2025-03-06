@@ -9,9 +9,12 @@ import pizza from './pizza.png';
 import rolls from './rolls.png';
 import salad from './salad.png';
 
+import profile from './profile.png';
+
 export const assets = {
     logo,
-    cart
+    cart,
+    profile
 }
 
 export const categories = [
