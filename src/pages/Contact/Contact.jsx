@@ -57,36 +57,13 @@ const Contact = () => {
 export default Contact;*/
 import React, { useState } from "react";
 import "./Contact.css";
-import axios from "axios";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
-  });
+  const [success, setSuccess] = useState(false);
 
-  const [success, setSuccess] = useState(false); // ✅ Show message conditionally
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await axios.post("https://your-backend-url.com/api/contact", formData);
-      setSuccess(true); // ✅ Show success message
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
-      }); // Clear form
-    } catch (error) {
-      alert("Feedback bhejne me problem aayi!");
-    }
+    setSuccess(true); // just show success message
   };
 
   return (
@@ -99,7 +76,7 @@ const Contact = () => {
 
               {success && (
                 <div className="alert alert-success text-center">
-                  ✅ Feedback sent successfully!
+                  Feedback sent successfully!
                 </div>
               )}
 
@@ -108,9 +85,6 @@ const Contact = () => {
                   <div className="col-md-6">
                     <input
                       type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
                       className="form-control custom-input"
                       placeholder="First Name"
                       required
@@ -119,9 +93,6 @@ const Contact = () => {
                   <div className="col-md-6">
                     <input
                       type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
                       className="form-control custom-input"
                       placeholder="Last Name"
                       required
@@ -130,9 +101,6 @@ const Contact = () => {
                   <div className="col-12">
                     <input
                       type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
                       className="form-control custom-input"
                       placeholder="Email Address"
                       required
@@ -140,9 +108,6 @@ const Contact = () => {
                   </div>
                   <div className="col-12">
                     <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
                       className="form-control custom-input"
                       rows="5"
                       placeholder="Your Message"
@@ -156,6 +121,7 @@ const Contact = () => {
                   </div>
                 </div>
               </form>
+
             </div>
           </div>
         </div>
@@ -165,4 +131,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
