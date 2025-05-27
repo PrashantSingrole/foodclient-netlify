@@ -18,7 +18,7 @@ const FoodDisplay = ({category, searchText}) => {
                         name={food.name} 
                         description={food.description}
                         id={food.id}
-                        imageUrl={food.imageUrl || https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80
+                        imageUrl={food.imageUrl || "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80"
 }
                         price={food.price} />
                 ))
