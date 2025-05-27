@@ -55,15 +55,18 @@ const Contact = () => {
 };
 
 export default Contact;*/
-import React, { useState } from "react";
+import React from "react";
+import { toast } from "react-toastify";
 import "./Contact.css";
 
 const Contact = () => {
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSuccess(true); // just show success message
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    
+    // Yaha tum data save karne ka code add kar sakte ho agar chaho
+    // Lekin tumne bola data store nahi karna hai, isliye sirf success toast dikhayenge
+    
+    toast.success("Feedback sent successfully! Thank you.");
   };
 
   return (
@@ -73,14 +76,7 @@ const Contact = () => {
           <div className="col-lg-8">
             <div className="contact-form p-5 shadow-sm bg-white">
               <h2 className="text-center mb-4">Get in Touch</h2>
-
-              {success && (
-                <div className="alert alert-success text-center">
-                  Feedback sent successfully!
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={onSubmitHandler}>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <input
@@ -121,7 +117,6 @@ const Contact = () => {
                   </div>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
