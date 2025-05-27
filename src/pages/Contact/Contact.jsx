@@ -55,18 +55,34 @@ const Contact = () => {
 };
 
 export default Contact;*/
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "./Contact.css";
 
 const Contact = () => {
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    
-    // Yaha tum data save karne ka code add kar sakte ho agar chaho
-    // Lekin tumne bola data store nahi karna hai, isliye sirf success toast dikhayenge
-    
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
     toast.success("Feedback sent successfully! Thank you.");
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    });
   };
 
   return (
@@ -81,6 +97,9 @@ const Contact = () => {
                   <div className="col-md-6">
                     <input
                       type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={onChangeHandler}
                       className="form-control custom-input"
                       placeholder="First Name"
                       required
@@ -89,6 +108,9 @@ const Contact = () => {
                   <div className="col-md-6">
                     <input
                       type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={onChangeHandler}
                       className="form-control custom-input"
                       placeholder="Last Name"
                       required
@@ -97,6 +119,9 @@ const Contact = () => {
                   <div className="col-12">
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={onChangeHandler}
                       className="form-control custom-input"
                       placeholder="Email Address"
                       required
@@ -104,6 +129,9 @@ const Contact = () => {
                   </div>
                   <div className="col-12">
                     <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={onChangeHandler}
                       className="form-control custom-input"
                       rows="5"
                       placeholder="Your Message"
